@@ -1,5 +1,3 @@
-'use client';
-import Link from 'next/link'
 import { AuthContext } from '@/providers/AuthProviders';
 import { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
