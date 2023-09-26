@@ -1,73 +1,57 @@
+'use client'
 import { createContext, useEffect, useState } from 'react';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from '../firebse/firebase.init';
 
 
+export const AuthContext = createContext(null);
 
-export const AuthContext = createContext();
 const auth = getAuth(app);
+const googleAuthProvider = new GoogleAuthProvider();
 
 
-const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+const AuthProviders = ({children}) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    // create user
-    const createUser = (email,password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth,email,password)
-    }
-  
-    
-    // signIn user
-    const signIn = (email,password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(auth,email,password)
-    }
-    
-    // state change
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth,currentUser => {
-            setUser(currentUser)
-            setLoading(false);
-        })
-        return () => {
-            unsubscribe()
-        }
-    },[])
-
-    // sign in with google
-    const googleProvider = new GoogleAuthProvider();
-    const googleLogin = () => {
-        setLoading(true)
-        return signInWithPopup(auth, googleProvider)
+    const createUser = (email, password) =>{
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    // update user profile
-    const updateUserProfile = (user, name, photo) => {
-        return updateProfile(user, {
-          displayName: name,
-          photoURL: photo,
-        });
-      };
+    const signIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
 
-    // logout
+    const signInWithGoogle = () =>{
+        return signInWithPopup(auth, googleAuthProvider);
+    }
+
     const logOut = () =>{
-        setLoading(true)
         return signOut(auth);
     }
 
+    // observe auth state change
+    useEffect( () =>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            console.log('auth state change', currentUser);
+            setUser(currentUser);
+            setLoading(false);
+        });
+
+        return () =>{
+            unsubscribe();
+        }
+
+    }, [])
 
     const authInfo = {
         user,
         loading,
         createUser,
         signIn,
-        googleLogin,
-        updateUserProfile,
-        logOut,
+        signInWithGoogle,
+        logOut
     }
-
 
     return (
         <AuthContext.Provider value={authInfo}>
@@ -76,4 +60,4 @@ const AuthProvider = ({children}) => {
     );
 };
 
-export default AuthProvider;
+export default AuthProviders;
