@@ -3,7 +3,7 @@ import placeholderimg from "../../assets/placeholderimg.jpg";
 function About() {
   return (
     <>
-      <section className="lg:ms-10">
+      <section className="lg:ms-10 mb-2">
         <div>
           <svg
             className="absolute top-0 right-0"
@@ -20,7 +20,7 @@ function About() {
 
         <div className="max-w-5xl">
           <h1 className="text-primaryOrange text-3xl font-extrabold pt-7 sm:ms-2">
-            SlashIT
+            {/* SlashIT */}
           </h1>
         </div>
 
