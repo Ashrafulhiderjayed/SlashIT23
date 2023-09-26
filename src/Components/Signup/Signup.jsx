@@ -1,20 +1,22 @@
+'use client';
 import { useContext } from 'react';
-import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Link } from 'react-router-dom';
 
-const Contact = () => {
-    const { signIn, signInWithGoogle } = useContext(AuthContext);
+const Signup = () => {
 
-    const handleLogin = event => {
+    const { user, createUser } = useContext(AuthContext);
+
+    const handleRegister = event => {
         event.preventDefault();
 
         const form = event.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        console.log(name, email, password);
 
-        signIn(email, password)
+        createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
@@ -25,25 +27,20 @@ const Contact = () => {
             })
     }
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
-
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="text-center">
-                    <h1 className="text-5xl font-bold">Please Login !</h1>
+                    <h1 className="text-5xl font-bold">Please Register !</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form onSubmit={handleLogin} className="card-body">
+                    <form onSubmit={handleRegister} className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" name='name' placeholder="name" className="input input-bordered" required />
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -56,26 +53,17 @@ const Contact = () => {
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                             <label className="label">
-                                <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
+                            <Link to="/login" className="label-text-alt link link-hover">Already have an account? <span className='font-bold'>Login</span></Link>
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary text-white bg-primary capitalize">Login</button>
+                            <button className="btn btn-primary bg-primary capitalize text-white">Register</button>
                         </div>
                     </form>
-                    <p className='mb-4 ml-8'>
-                        <Link to="/signUp" className="label-text-alt link link-hover">
-                            New to RENTAL RIDE? <span className='font-bold'>Please Register</span>
-                        </Link>
-                    </p>
-                    <div className='text-center'>
-                    <button onClick={handleGoogleSignIn} className="btn btn-primary btn-sm rounded-full border-2 border-deepNavy mb-2 text-center text-white bg-primary capitalize"><FaGoogle /></button>
-                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Contact;
-
+export default Signup;

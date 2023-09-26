@@ -43,7 +43,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn capitalize">Login</a>
+                <Link to='/login' className="btn capitalize">Login</Link>
             </div>
             </div>  
         </section>

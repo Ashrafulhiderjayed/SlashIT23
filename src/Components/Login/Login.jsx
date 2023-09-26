@@ -3,7 +3,7 @@ import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Link } from 'react-router-dom';
 
-const Contact = () => {
+const Login = () => {
     const { signIn, signInWithGoogle } = useContext(AuthContext);
 
     const handleLogin = event => {
@@ -65,7 +65,7 @@ const Contact = () => {
                     </form>
                     <p className='mb-4 ml-8'>
                         <Link to="/signUp" className="label-text-alt link link-hover">
-                            New to RENTAL RIDE? <span className='font-bold'>Please Register</span>
+                            New to SlashIT? <span className='font-bold'>Please Register</span>
                         </Link>
                     </p>
                     <div className='text-center'>
@@ -77,5 +77,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
-
+export default Login;
