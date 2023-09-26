@@ -20,8 +20,9 @@ const Navbar = () => {
                         <li><a>New items</a></li>
                     </ul>
                     </li>
-                    <li><Link to='/about'>About</Link></li>
+                    {/* <li><Link to='/about'>About</Link></li> */}
                     <li><Link to='/contact'>Contact Us</Link></li>
+                    <li><Link to='#'>Policy</Link></li>
                 </ul>
                 </div>
                 <a className="btn btn-ghost normal-case text-xl">SlashIT</a>
@@ -38,8 +39,9 @@ const Navbar = () => {
                     </ul>
                     </details>
                 </li>
-                <li><Link to='/about'>About</Link></li>
+                {/* <li><Link to='/about'>About</Link></li> */}
                 <li><Link to='/contact'>Contact Us</Link></li>
+                <li><Link to='#'>Policy</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
