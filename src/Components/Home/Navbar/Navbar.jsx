@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <section>
-          <div className="navbar bg-base-100">
+      <section>
+          <div className="navbar fixed z-10 bg-base-100">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -16,8 +16,8 @@ const Navbar = () => {
                     <li>
                     <Link to='/'>Shop</Link>
                     <ul className="p-2">
-                        <li><a>Popular</a></li>
-                        <li><a>New items</a></li>
+                      <li><a>Food</a></li>
+                      <li><a>Grocery</a></li>
                     </ul>
                     </li>
                     {/* <li><Link to='/about'>About</Link></li> */}
@@ -27,6 +27,8 @@ const Navbar = () => {
                 </div>
                 <a className="btn btn-ghost normal-case text-xl">SlashIT</a>
             </div>
+
+            
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                 <li><Link to='/'>Home</Link></li>
@@ -34,8 +36,8 @@ const Navbar = () => {
                     <details>
                     <summary>Shop</summary>
                     <ul className="p-2">
-                        <li><a>Popular</a></li>
-                        <li><a>New items</a></li>
+                      <li><a>Food</a></li>
+                      <li><a>Grocery</a></li>
                     </ul>
                     </details>
                 </li>

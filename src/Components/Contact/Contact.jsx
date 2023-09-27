@@ -65,7 +65,7 @@ const Contact = () => {
                     </form>
                     <p className='mb-4 ml-8'>
                         <Link to="/signUp" className="label-text-alt link link-hover">
-                            New to RENTAL RIDE? <span className='font-bold'>Please Register</span>
+                            New to SlashIT? <span className='font-bold'>Please Register</span>
                         </Link>
                     </p>
                     <div className='text-center'>
